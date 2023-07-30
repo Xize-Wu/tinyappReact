@@ -1,5 +1,10 @@
 ### TinyApp React
 
+### Trello Tickets
+
+[Link Here](https://trello.com/b/XE84OQOn/tinyapp-react)
+
+
 - `node 18.17.0`
 - `vite`
 - `express`
