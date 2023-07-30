@@ -11,8 +11,22 @@ function App() {
       console.log(err)
     }
   }
+
+  const load = async () =>{
+    try{
+      const res = await axios.get('http://localhost:8080/all_urls')
+      console.log(res)
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+  
+  load()
+  
   return (
     <button onClick={() => test()}>Test</button>
+
   )
 }
 
