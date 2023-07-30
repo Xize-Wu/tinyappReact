@@ -2,11 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
 
 function App() {
   const [count, setCount] = useState(0)
   const test = ()=>{
-    axios.post('/test',{earl_grey: false})
+    axios.post('http://localhost:8080/test',{earl_grey: false})
     .then(response =>{console.log(response)})
     .catch(function (error) {
       console.log(error);
