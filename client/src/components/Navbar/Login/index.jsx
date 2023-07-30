@@ -1,13 +1,15 @@
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({onLoggedIn}) => {
 
 	const onLogin = async evt => {
 		evt.preventDefault();
 		const payload = {email: evt.target.email.value, password: evt.target.password.value}
 		try {
 			const result = await axios.post('http://localhost:8080/sessions/login', payload)
-			console.log(result);
+			if (result.data.success) {
+				onLoggedIn(result.data?.user);
+			}
 		} catch (e) {
 			console.log("error", e);
 		}
