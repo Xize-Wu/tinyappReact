@@ -11,6 +11,7 @@ import sessionRoutes from './routes/sessions.js';
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 
 // middleware 
