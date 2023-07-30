@@ -10,7 +10,7 @@ function App() {
     axios.post('http://localhost:8080/test',{earl_grey: false})
     .then(response =>{console.log(response)})
     .catch(function (error) {
-      console.log(error);
+      console.log(error)
     });  
   }
   return (
