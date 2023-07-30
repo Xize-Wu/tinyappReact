@@ -6,7 +6,7 @@ const Login = () => {
 		evt.preventDefault();
 		const payload = {email: evt.target.email.value, password: evt.target.password.value}
 		try {
-			const result = axios.post('http://localhost:8080/sessions/login', payload)
+			const result = await axios.post('http://localhost:8080/sessions/login', payload)
 			console.log(result);
 		} catch (e) {
 			console.log("error", e);
