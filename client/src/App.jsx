@@ -1,5 +1,7 @@
 import './App.css'
 import axios from 'axios'
+import Navbar from './components/Navbar/'
+
 
 function App() {
   const test = async () => {
@@ -12,7 +14,10 @@ function App() {
     }
   }
   return (
-    <button onClick={() => test()}>Test</button>
+    <>
+      <Navbar/>
+      <button onClick={() => test()}>Test</button>
+    </>
   )
 }
 
