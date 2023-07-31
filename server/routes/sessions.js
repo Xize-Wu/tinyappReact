@@ -23,13 +23,24 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/logout', async (req, res) => {
-	res.clearCookie("token")
-	return res.json({
+	return res.clearCookie("token").json({
 		success: true,
 		err: null,
 		message: "Logged Out!",
 		user,
 	});
 })
+
+router.get('/verify', (req,res) => {
+	console.log("TOKEN!!");
+	console.log(req.token); 
+
+	if (req.token) {
+		return res.json({user: req.token, success: true});
+	} else {
+		return res.clearCookie("token").json({success: false});
+	}
+})
+
 
 export default router;

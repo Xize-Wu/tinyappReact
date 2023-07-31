@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+axios.defaults.baseURL = 'http://localhost:8080'
+
 const Login = ({onLoggedIn}) => {
 
 	const onLogin = async evt => {
 		evt.preventDefault();
 		const payload = {email: evt.target.email.value, password: evt.target.password.value}
 		try {
-			const result = await axios.post('http://localhost:8080/sessions/login', payload)
+			const result = await axios.post('/sessions/login', payload, {withCredentials: true})
 			if (result.data.success) {
 				onLoggedIn(result.data?.user);
 			}

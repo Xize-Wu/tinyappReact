@@ -15,7 +15,7 @@ const Navbar = () => {
 
 	const onLogut = async () => {
 		try {
-			const res = await axios.post('http://localhost:8080/sessions/logout')
+			const res = await axios.post('http://localhost:8080/sessions/logout',  { withCredentials: true })
 			if (res.data?.success) {
 				setUser(undefined);
 			}
