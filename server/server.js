@@ -35,10 +35,9 @@ try {
   console.error('Haiyaa... Unable to connect to the database:', error);
 }
 
-//find all test
+//find all urls
 app.get('/all_urls', async (req, res) => {
-  // const urlsModel = db.urls;
-  const result = await sequelize.query('SELECT * FROM "users" JOIN "urls" ON users.id = urls.user_id', { type: QueryTypes.SELECT });
+  const result = await sequelize.query('SELECT urls.id, users.email, urls.long_url, urls.short_url FROM users JOIN "urls" ON users.id = urls.user_id', { type: QueryTypes.SELECT });
   return res.json(result)
 })
 
