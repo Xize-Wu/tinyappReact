@@ -55,6 +55,41 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+.individual-url {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 0.5px solid #686976; /* Add top border */
+  border-bottom: 0.5px solid #686976; /* Add bottom border */
+}
+
+.long {
+  font-size: 1em;
+  width: 450px;
+  border-right: 1px solid #686976; /* Add top border */
+
+}
+
+.short {
+  font-size: 1em;
+  width: 450px;
+  border-right: 1px solid #686976; /* Add top border */
+
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  padding-left:10px
+
+}
+
+.container{
+  border-top: 0.5px solid #686976; /* Add top border */
+  border-bottom: 0.5px solid #686976; /* Add top border */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
