@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Edit from './Edit';
+import Remove from './Remove';
+
 
 export default function Url (props) {
-    return (<div className="individual-url">
+    const [edit, setEdit] = useState(false);
+    const [remove, setRemove] = useState(false)
+
+    return (<><div className="individual-url">
     <div className="long">
     {props.longUrl}
     </div>
@@ -9,9 +15,12 @@ export default function Url (props) {
     {props.shortUrl}
     </div>
     <div className="buttons">
-        <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={()=>setEdit(true)}>Edit</button >
+        <button onClick={()=>setRemove(true)}>Delete</button>
     </div>
     </div>
+    {edit?<Edit longUrl={props.longUrl} shortUrl={props.shortUrl} setEdit={()=>setEdit()}/>:''}
+    {remove?<Remove setRemove={()=>setRemove()}/>:''}
+    </>
     )
 }
