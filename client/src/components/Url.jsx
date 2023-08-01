@@ -15,12 +15,12 @@ export default function Url (props) {
     {props.shortUrl}
     </div>
     <div className="buttons">
-        <button onClick={()=>setEdit(true)}>Edit</button >
-        <button onClick={()=>setRemove(true)}>Delete</button>
+        <button onClick={()=>{setRemove(false);setEdit(true)}}>Edit</button >
+        <button onClick={()=>{setRemove(true); setEdit(false)}}>Delete</button>
     </div>
     </div>
     {edit?<Edit longUrl={props.longUrl} shortUrl={props.shortUrl} setEdit={()=>setEdit()}/>:''}
-    {remove?<Remove setRemove={()=>setRemove()}/>:''}
+    {remove?<Remove id={props.id} setRemove={()=>setRemove()} load={()=>props.load()}/>:''}
     </>
     )
 }

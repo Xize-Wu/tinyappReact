@@ -1,16 +1,28 @@
 import React from 'react';
 
 export default function Edit(props) {
+    const [form, setForm] = useState({
+        longUrl:props.longUrl,
+        shortUrl:props.shortUrl
+    })
+
+    const handleChange = (event) =>{
+        setForm({
+            ...form,
+            [event.target.id]: event.target.value
+        })
+    }
+
     return (
         <div className='edit-container'>
             <form>
                 <label>
-                    Long Url:
-                    <input/>
+                    <div>Long Url</div>
+                    <input required defaultValue={props.longUrl}/>
                 </label>
                 <label>
-                    Short Url:
-                    <input/>
+                    <div>Short Url</div>
+                    <input required defaultValue={props.shortUrl}/>
                 </label>
             
             </form>

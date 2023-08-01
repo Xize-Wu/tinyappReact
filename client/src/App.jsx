@@ -29,7 +29,11 @@ function App() {
           
             (
               urlList.map((x) => {
-                return <Url key={x.id} longUrl={x.long_url} shortUrl= {x.short_url} />
+                return <Url key={x.id} 
+                            id={x.id}
+                            longUrl={x.long_url} 
+                            shortUrl= {x.short_url}
+                            load = {()=>load()} />
               })
             )
         }
