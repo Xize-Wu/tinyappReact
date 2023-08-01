@@ -48,4 +48,23 @@ app.post('/remove', async(req,res) =>{
  return res.status(200).json(result)
 })
 
+app.post('/edit', async (req, res) => {
+  const { longUrl, shortUrl, id } = req.body;
+
+  try {
+    const query = 'UPDATE urls SET long_url = :longUrl, short_url = :shortUrl WHERE id = :id';
+    const replacements = { longUrl, shortUrl, id };
+
+    const result = await sequelize.query(query, {
+      replacements,
+      type: QueryTypes.UPDATE,
+    });
+
+    return res.status(200).json(result);
+  } catch (error) {
+    console.error('Error updating URL:', error);
+    return res.status(500).json({ error: 'Error updating URL' });
+  }
+});
+
 app.listen(PORT, console.log(`Server is listening on PORT: `, PORT));

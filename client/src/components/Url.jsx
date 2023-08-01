@@ -19,8 +19,14 @@ export default function Url (props) {
         <button onClick={()=>{setRemove(true); setEdit(false)}}>Delete</button>
     </div>
     </div>
-    {edit?<Edit longUrl={props.longUrl} shortUrl={props.shortUrl} setEdit={()=>setEdit()}/>:''}
-    {remove?<Remove id={props.id} setRemove={()=>setRemove()} load={()=>props.load()}/>:''}
+    {edit?<Edit id={props.id} 
+                longUrl={props.longUrl} 
+                shortUrl={props.shortUrl} 
+                setEdit={()=>setEdit()} 
+                load={()=>props.load()}/>:''}
+    {remove?<Remove id={props.id} 
+                    setRemove={()=>setRemove()} 
+                    load={()=>props.load()}/>:''}
     </>
     )
 }
