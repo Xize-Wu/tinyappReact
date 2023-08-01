@@ -4,23 +4,11 @@ import axios from 'axios'
 import Url from './components/Url'
 
 function App() {
-  // const test = async () => {
-  //   try {
-  //     const response = await axios.post('http://localhost:8080/test', { earl_grey: false })
-  //     console.log(response)
-  //   }
-  //   catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   const [urlList, setUrlList] = useState([])
   const load = async () => {
     try {
       const res = await axios.get('http://localhost:8080/all_urls')
-
-      console.log(res.data[1])
-
       setUrlList(res.data)
     }
     catch (err) {
@@ -34,10 +22,10 @@ function App() {
 
   return (
     <>
+      <button>Create Url</button>
       <div className='container'>
-        {console.log('this is url list', urlList)}
         {
-          urlList.length === 0 ? (<>Loading...</>) :
+          urlList.length === 0 ? (<>Haiyaa... There are no urls in the database!</>) :
           
             (
               urlList.map((x) => {
