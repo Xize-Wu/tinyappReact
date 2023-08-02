@@ -1,6 +1,9 @@
-import axios from 'axios';
+import { useContext } from 'react'
+import { userContext } from '../../../contexts/user'
+import axios from 'axios'
 
-const Login = ({onLoggedIn}) => {
+const Login = () => {
+	const { setUser } = useContext(userContext)
 
 	const onLogin = async evt => {
 		evt.preventDefault();
@@ -8,7 +11,7 @@ const Login = ({onLoggedIn}) => {
 		try {
 			const result = await axios.post('/sessions/login', payload, {withCredentials: true})
 			if (result.data.success) {
-				onLoggedIn(result.data?.user);
+				setUser(result.data?.user)
 			}
 		} catch (e) {
 			console.log("error", e);

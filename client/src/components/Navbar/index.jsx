@@ -1,7 +1,8 @@
 import './index.css'
 import Login from './Login';
 import Register from './Register';
-
+import { useContext } from 'react'
+import { userContext } from '../../contexts/user';
 import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import {useState} from 'react';
@@ -10,14 +11,14 @@ import axios from 'axios';
 const Navbar = () => {
 	const [modalLogin, toggleLogin] = useState(false)
 	const [modalRegister, toggleRegister] = useState(false)
-	// TODO: refactor to useContext
-	const [user, setUser] = useState(undefined)
+	const {user, setUser} = useContext(userContext)
 
 	const onLogout = async () => {
 		try {
 			const res = await axios.post('/sessions/logout', null, {withCredentials: true})
 			if (res.data?.success) {
 				setUser(undefined);
+				toggleLogin(false);
 			}
 
 		} catch (e) {
@@ -38,7 +39,7 @@ const Navbar = () => {
 				<button className="btn--login" onClick={() => toggleLogin(true)}>Login</button>
 				<button className="btn--register" onClick={() => toggleRegister(true)}>Register</button>
 				<Modal open={modalLogin} onClose={() => toggleLogin(false)} center>
-					<Login onLoggedIn={setUser}/>
+					<Login/>
 				</Modal>
 				<Modal open={modalRegister} onClose={() => toggleRegister(false)} center>
 					<Register/>

@@ -1,8 +1,8 @@
 import './App.css'
 import axios from 'axios'
 import Navbar from './components/Navbar/'
+import UserProvider from './contexts/user'
 axios.defaults.baseURL = 'http://localhost:8080'
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 
 function App() {
@@ -17,8 +17,10 @@ function App() {
   }
   return (
     <>
-      <Navbar/>
-      <button onClick={() => test()}>Test</button>
+      <UserProvider>
+        <Navbar/>
+        <button onClick={() => test()}>Test</button>
+      </UserProvider>
     </>
   )
 }
