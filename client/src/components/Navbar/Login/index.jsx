@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8080'
-
 const Login = ({onLoggedIn}) => {
 
 	const onLogin = async evt => {

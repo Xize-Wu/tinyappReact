@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 export default (req, res, next) => {
 
 	// if token exists means they could be logged in, we have to check if token is valid

@@ -8,14 +8,14 @@ import {useState} from 'react';
 import axios from 'axios';
 
 const Navbar = () => {
-	const [modalLogin, toggleLogin] = useState(false);
-	const [modalRegister, toggleRegister] = useState(false);
+	const [modalLogin, toggleLogin] = useState(false)
+	const [modalRegister, toggleRegister] = useState(false)
 	// TODO: refactor to useContext
-	const [user, setUser] = useState(undefined);
+	const [user, setUser] = useState(undefined)
 
-	const onLogut = async () => {
+	const onLogout = async () => {
 		try {
-			const res = await axios.post('http://localhost:8080/sessions/logout',  { withCredentials: true })
+			const res = await axios.post('/sessions/logout', null, {withCredentials: true})
 			if (res.data?.success) {
 				setUser(undefined);
 			}
@@ -31,7 +31,7 @@ const Navbar = () => {
 			{user ? 
 				<div>
 					<h3>Hello {user?.email}</h3>
-					<button onClick={onLogut} className="btn--register">Logout</button>
+					<button onClick={onLogout} className="btn--register">Logout</button>
 				</div>
 			: 
 			<div className="sessions">

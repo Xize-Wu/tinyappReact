@@ -12,7 +12,15 @@ import sessionRoutes from './routes/sessions.js';
 
 const app = express();
 
-app.use(cors({origin: 'http://localhost:5173/'}))
+
+
+const corsOptions = {
+	origin: 'http://localhost:5173',
+	optionsSuccessStatus: 200,
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -22,9 +30,6 @@ app.use(morgan('dev'));
 app.use(sessionVerify);
 
 
-
-
-app.options('/sessions', cors({origin: 'http://localhost:5173/'}))
 app.use('/sessions', sessionRoutes);
 
 
