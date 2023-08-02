@@ -2,7 +2,7 @@
   "development": {
     "username": "labber",
     "password": "labber",
-    "database": "tinyapp",
+    "database": "tinyapp_react",
     "host": "127.0.0.1",
     "dialect": "postgresql"
   },
