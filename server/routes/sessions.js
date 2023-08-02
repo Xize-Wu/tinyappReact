@@ -33,9 +33,6 @@ router.post('/logout', async (req, res) => {
 })
 
 router.get('/verify', (req,res) => {
-	console.log("TOKEN!!");
-	console.log(req.token); 
-
 	if (req.token) {
 		return res.json({user: req.token, success: true});
 	} else {

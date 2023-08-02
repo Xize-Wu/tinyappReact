@@ -20,7 +20,6 @@ const Navbar = () => {
 				setUser(undefined);
 				toggleLogin(false);
 			}
-
 		} catch (e) {
 			console.log(e);
 		}
