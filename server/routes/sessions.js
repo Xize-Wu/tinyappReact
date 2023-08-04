@@ -8,7 +8,6 @@ const User = usersModel(sequelize);
 const router = express.Router();
 
 router.post('/login', async (req, res) => {
-	console.log(process.env)
 	const result = await User.findOne({where: {email: req.body.email}});
 	if (result && result.dataValues.password === req.body.password) {
 		const user =  (({ id, email, }) => ({ id, email }))(result.dataValues);
@@ -26,7 +25,6 @@ router.post('/login', async (req, res) => {
 		success: false,
 		err: 'LOGIN_ERR',
 		message: "User password or email does not exist!",
-		user,
 	});
 })
 
