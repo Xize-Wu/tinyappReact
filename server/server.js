@@ -1,22 +1,36 @@
 const PORT = 8080;
-
-
+import 'dotenv/config'
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { Sequelize, QueryTypes } from 'sequelize';
-import db from './models/index.js';
+import cookieParser from 'cookie-parser';
+import sessionVerify from './middlware/sessionVerify.js';
+import sequelize from './db/connection.js';
+import { QueryTypes } from 'sequelize';
 
-const sequelize = new Sequelize('postgres://labber:labber@localhost:5432/tinyapp') // Example for postgres
+// routes
+
+import sessionRoutes from './routes/sessions.js';
+import db from './models/index.js';
 
 const app = express();
 
-app.use(cors())
+const corsOptions = {
+	origin: process.env.ORIGIN,
+	optionsSuccessStatus: 200,
+  credentials: true
+};
 
 // middleware 
 app.use(morgan('dev'));
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 
+// routes
+app.use(sessionVerify);
+
+app.use('/sessions', sessionRoutes);
 
 
 app.get("/test", async (req, res) => {
@@ -27,14 +41,6 @@ app.post("/test", async (req, res) => {
   console.log(req)
   return res.json("Emotional damage!")
 })
-
-//sequelize connection test
-try {
-  await sequelize.authenticate();
-  console.log('Fuiyoh! Connection has been established successfully.');
-} catch (error) {
-  console.error('Haiyaa... Unable to connect to the database:', error);
-}
 
 //find all urls
 app.get('/all_urls', async (req, res) => {

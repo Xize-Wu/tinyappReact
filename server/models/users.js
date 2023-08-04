@@ -8,15 +8,17 @@ export default function (sequelize) {
       primaryKey: true,
       autoIncrement: true
     },
-    long_url: {
+    email: {
       type: DataTypes.STRING
     },
-    short_url: {
+    password: {
       type: DataTypes.STRING
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: { model: 'users', key: 'id' }
+    createdAt: {
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
     }
   }, {
     freezeTableName: true,

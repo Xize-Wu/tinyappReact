@@ -1,0 +1,35 @@
+.navbar {
+	background-color: rgb(17, 52, 114);
+	display: flex;
+	padding: 15px;
+	justify-content: space-between;
+	color: white;
+}
+
+.sessions {
+	justify-self: 
+}
+
+.btn--login {
+	background-color: rgb(102, 176, 78);
+	font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.btn--register {
+	background-color: firebrick;
+	font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: firebrick;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+}
