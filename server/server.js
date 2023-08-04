@@ -5,21 +5,18 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import sessionVerify from './middlware/sessionVerify.js';
+import sequelize from './db/connection.js';
+import { QueryTypes } from 'sequelize';
 
 // routes
 
 import sessionRoutes from './routes/sessions.js';
-import { Sequelize, QueryTypes } from 'sequelize';
 import db from './models/index.js';
-
-const {PG_PORT, PG_NAME, PG_USER, PASSWORD, HOST} = process.env;
-const connStr = `postgres://${PG_USER}:${PASSWORD}@${HOST}:${PG_PORT}/${PG_NAME}`;
-const sequelize = new Sequelize(connStr) // Example for postgres
 
 const app = express();
 
 const corsOptions = {
-	origin: 'http://localhost:5173',
+	origin: process.env.ORIGIN,
 	optionsSuccessStatus: 200,
   credentials: true
 };
@@ -44,14 +41,6 @@ app.post("/test", async (req, res) => {
   console.log(req)
   return res.json("Emotional damage!")
 })
-
-//sequelize connection test
-try {
-  await sequelize.authenticate();
-  console.log('Fuiyoh! Connection has been established successfully.');
-} catch (error) {
-  console.error('Haiyaa... Unable to connect to the database:', error);
-}
 
 //find all urls
 app.get('/all_urls', async (req, res) => {

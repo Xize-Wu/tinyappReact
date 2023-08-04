@@ -4,8 +4,7 @@ export default (req, res, next) => {
 
 	// if token exists means they could be logged in, we have to check if token is valid
 	if (req.cookies.token) {
-		console.log(req.cookies)
-		jwt.verify(req.cookies.token, 'somekey', (err, decoded) => {
+		jwt.verify(req.cookies.token, process.env.TOKEN_KEY, (err, decoded) => {
 			if (err) {
 				// if invalid, clear token
 				res.token = undefined;
