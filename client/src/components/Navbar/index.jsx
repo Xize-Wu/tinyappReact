@@ -7,6 +7,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import {useState} from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
 	const [modalLogin, toggleLogin] = useState(false)
@@ -30,7 +31,7 @@ const Navbar = () => {
 			<h1>TinyApp - React</h1>
 			{user ? 
 				<div>
-					<h3>Hello {user?.email}</h3>
+					<Link to= '/profile'><h3>Hello {user?.email}</h3></Link>
 					<button onClick={onLogout} className="btn--register">Logout</button>
 				</div>
 			: 

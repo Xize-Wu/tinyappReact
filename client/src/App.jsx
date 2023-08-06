@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Navbar from './components/Navbar/'
 import UserProvider from './contexts/user'
-import Url from './components/Url'
+import PublicUrl from './components/PublicUrl'
 axios.defaults.baseURL = 'http://localhost:8080'
 
 
@@ -36,7 +36,7 @@ function App() {
             
               (
                 urlList.map((x) => {
-                  return <Url key={x.id} 
+                  return <PublicUrl key={x.id} 
                               id={x.id}
                               longUrl={x.long_url} 
                               shortUrl= {x.short_url}

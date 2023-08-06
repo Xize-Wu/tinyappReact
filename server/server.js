@@ -48,6 +48,13 @@ app.get('/all_urls', async (req, res) => {
   return res.json(result)
 })
 
+app.get('/my_url', async (req,res) =>{
+  const result = await sequelize.query('SELECT urls.id, users.email, urls.long_url, urls.short_url FROM users JOIN "urls" ON users.id = urls.user_id', { type: QueryTypes.SELECT })
+  console.log(result)
+  
+  return res.json(result)
+})
+
 //remove url from database
 app.post('/remove', async(req,res) =>{
   const result = await sequelize.query(`DELETE FROM urls WHERE id = ${req.body.id}`)
