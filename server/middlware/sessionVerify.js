@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 
 export default (req, res, next) => {
 
-	// if token exists means they could be logged in, we have to check if token is valid
 	if (req.cookies.token) {
 		jwt.verify(req.cookies.token, process.env.TOKEN_KEY, (err, decoded) => {
 			if (err) {
@@ -14,7 +13,7 @@ export default (req, res, next) => {
 			req.token = decoded;
   		return next();
 		});
+	} else {
+		return next();
 	}
-	// if no token, continue
-	return next();
 };
