@@ -1,9 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import sequelize from './../db/connection.js';
-import usersModel from '../models/users.js';
-
-const User = usersModel(sequelize);
+import User from '../models/user.js';
 
 const router = express.Router();
 

@@ -1,27 +1,24 @@
 import { DataTypes } from 'sequelize';
+import sequelize from '../db/connection.js';
 
-export default function (sequelize) {
-  return sequelize.define('users', {
+const Url = sequelize.define('urls', 
+  {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    email: {
+    long_url: {
       type: DataTypes.STRING
     },
-    password: {
+    short_url: {
       type: DataTypes.STRING
     },
-    createdAt: {
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-    }
   }, {
     freezeTableName: true,
     timestamps: true
-  });
-}
+  }
+);
+
+export default Url;
