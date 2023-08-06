@@ -18,7 +18,7 @@ export default function Edit(props) {
     const handleEdit = async (event) => {
         event.preventDefault()
         try{
-            const res = await axios.post('http://localhost:8080/edit', form)
+            const res = await axios.post('urls/edit', form)
             console.log(res)
             props.load()
             props.setEdit(false)
