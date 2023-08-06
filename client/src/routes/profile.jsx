@@ -2,7 +2,7 @@ import { Form } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import UserProvider from "../contexts/user";
-import Url from "../components/Url";
+import Url from "../components/Profile/Url";
 import axios from "axios";
 //npx sequelize-cli db:drop
 export default function Profile (){

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Edit from './Edit';
-import Remove from './Remove';
+import Edit from './Profile/Edit';
+import Remove from './Profile/Remove';
 
 
 export default function PublicUrl (props) {
