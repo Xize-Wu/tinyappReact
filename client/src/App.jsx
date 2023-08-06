@@ -13,7 +13,7 @@ function App() {
   const [urlList, setUrlList] = useState([])
   const load = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/all_urls')
+      const res = await axios.get('http://localhost:8080/urls')
       setUrlList(res.data)
     }
     catch (err) {
