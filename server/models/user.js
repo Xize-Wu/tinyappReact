@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../db/connection.js';
+import Url from './url.js'
 
 const User = sequelize.define('users', 
   {
@@ -26,5 +27,8 @@ const User = sequelize.define('users',
     timestamps: true
   }
 );
+
+Url.belongsTo(User, { foreignKey: 'user_id', allowNull: false });
+
 
 export default User;
