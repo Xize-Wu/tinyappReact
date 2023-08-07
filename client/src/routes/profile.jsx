@@ -11,7 +11,7 @@ export default function Profile (){
     const [create, setCreate] = useState(false)
     const load = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/my_url')
+        const res = await axios.get('/urls/my_url', {withCredentials: true})
         setUrlList(res.data)
       }
       catch (err) {

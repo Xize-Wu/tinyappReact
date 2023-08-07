@@ -18,7 +18,7 @@ export default function Create(props) {
     const handleCreate = async (event) => {
         event.preventDefault()
         try{
-            const res = await axios.post('/create', {form}, {withCredentials:true})
+            const res = await axios.post('/urls', {form}, {withCredentials:true})
             console.log(res)
             props.load()
             setForm({
