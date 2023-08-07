@@ -14,7 +14,9 @@ export default (req, res, next) => {
 			req.token = decoded;
   		return next();
 		});
+	} else {
+			return next();
 	}
 	// if no token, continue
-	return next();
+	
 };

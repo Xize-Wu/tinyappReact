@@ -11,13 +11,12 @@ import { QueryTypes } from 'sequelize';
 // routes
 
 import sessionRoutes from './routes/sessions.js';
-import db from './models/index.js';
 
 const app = express();
 
 const corsOptions = {
-	origin: process.env.ORIGIN,
-	optionsSuccessStatus: 200,
+  origin: process.env.ORIGIN,
+  optionsSuccessStatus: 200,
   credentials: true
 };
 
@@ -48,17 +47,17 @@ app.get('/all_urls', async (req, res) => {
   return res.json(result)
 })
 
-app.get('/my_url', async (req,res) =>{
+app.get('/my_url', async (req, res) => {
   const result = await sequelize.query('SELECT urls.id, users.email, urls.long_url, urls.short_url FROM users JOIN "urls" ON users.id = urls.user_id', { type: QueryTypes.SELECT })
   console.log(result)
-  
+
   return res.json(result)
 })
 
 //remove url from database
-app.post('/remove', async(req,res) =>{
+app.post('/remove', async (req, res) => {
   const result = await sequelize.query(`DELETE FROM urls WHERE id = ${req.body.id}`)
- return res.status(200).json(result)
+  return res.status(200).json(result)
 })
 
 app.post('/edit', async (req, res) => {
@@ -73,11 +72,60 @@ app.post('/edit', async (req, res) => {
       type: QueryTypes.UPDATE,
     });
 
-    return res.status(200).json(result);
+    return res.status(200).json({ hello: 'world' });
   } catch (error) {
     console.error('Error updating URL:', error);
     return res.status(500).json({ error: 'Error updating URL' });
   }
 });
+
+app.post('/create', async (req, res) => {
+  console.log("-------------------------------------")
+  const { longUrl, shortUrl } = req.body.form;
+  const id = req.token.user.id
+
+  try {
+    const query = 'SELECT COUNT (*) FROM urls WHERE long_url =:longUrl AND user_id =:id'
+    const replacements = { longUrl, id }
+    const countLong = await sequelize.query(query, {
+      replacements,
+      type: QueryTypes.SELECT
+    })
+    if (countLong[0]['count'] !== '0') {
+      return res.status(200).json('duplicate long url')
+    } else {
+      try {
+        const shortQuery = 'SELECT COUNT (*) FROM urls WHERE short_url =:shortUrl'
+        const replacements = { shortUrl, id }
+        const countShort = await sequelize.query(shortQuery, {
+          replacements,
+          type: QueryTypes.SELECT
+        })
+        console.log(countShort[0]['count'], 'short url')
+        if (countShort[0]['count'] !== '0') {
+          return res.status(200).json('duplicate short url')
+        } else {
+          const createQuery = 'INSERT INTO urls (long_url, short_url) VALUES (:longUrl, :shortUrl)'
+          const replacements = {longUrl, shortUrl}
+          const createUrl = await sequelize.query(createQuery, {
+            replacements,
+            type:QueryTypes.INSERT
+          })
+          createUrl()
+          const message = "url created"
+          return res.status(200).json(createUrl);
+        }
+
+      } catch (error) {
+        console.error('Error creating URL:', error);
+        return res.status(500).json({ error: 'Error creating URL' });
+      }
+    }
+
+  } catch (error) {
+    console.error('Error creating URL:', error);
+    return res.status(500).json({ error: 'Error creating URL' });
+  }
+})
 
 app.listen(PORT, console.log(`Server is listening on PORT: `, PORT));

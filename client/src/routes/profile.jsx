@@ -4,9 +4,11 @@ import Navbar from "../components/Navbar";
 import UserProvider from "../contexts/user";
 import Url from "../components/Profile/Url";
 import axios from "axios";
+import Create from "../components/Profile/Create";
 //npx sequelize-cli db:drop
 export default function Profile (){
     const [urlList, setUrlList] = useState([])
+    const [create, setCreate] = useState(false)
     const load = async () => {
       try {
         const res = await axios.get('http://localhost:8080/my_url')
@@ -27,7 +29,10 @@ export default function Profile (){
             {}
             <Navbar/>
         <div id='profile'>
-            
+          <div id='create'>
+        {create?<></>:<button onClick = {()=>setCreate(true)}>Create Url</button>}
+        {create?<Create setCreate={()=>setCreate()} load={()=>load()}/>:<></> }
+        </div>
         {
             urlList.length === 0 ? (<>Haiyaa... There are no urls in the database!</>) :
             

@@ -29,7 +29,6 @@ function App() {
     <>
       <UserProvider>
         <Navbar/>
-        <button>Create Url</button>
         <div className='container'>
           {
             urlList.length === 0 ? (<>Haiyaa... There are no urls in the database!</>) :
