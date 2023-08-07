@@ -7,7 +7,7 @@ export default function Remove(props) {
     const handleRemove = async (event) =>{
         event.preventDefault()
         try{
-            const res = await axios.post('http://localhost:8080/remove', { id: props.id }) 
+            const res = await axios.post('urls/remove', { id: props.id }) 
             console.log(res)
             props.load()
         }
